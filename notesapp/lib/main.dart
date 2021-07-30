@@ -27,9 +27,9 @@ class MyApp extends StatelessWidget {
       // which used to re-authenticate every time App was opened
       // earlier I was simply calling the Login page
       // fixed it here
-      // home: LoginPage(),
-      home:
-          FirebaseAuth.instance.currentUser == null ? LoginPage() : HomePage(),
+      home: LoginPage(),
+      //home:
+      // FirebaseAuth.instance.currentUser == null ? LoginPage() : HomePage(),
     );
   }
 }

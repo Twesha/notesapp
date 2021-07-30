@@ -13,10 +13,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  CollectionReference ref = FirebaseFirestore.instance
+  var ref = FirebaseFirestore.instance
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser.uid)
-      .collection('notes');
+      .collection('notes')
+      .snapshots();
 
   List<Color> myColors = [
     Colors.yellow[200],
@@ -64,8 +65,9 @@ class _HomePageState extends State<HomePage> {
               elevation: 0.0,
               backgroundColor: Color(0xff00706),
             ),
-            body: FutureBuilder<QuerySnapshot>(
-              future: ref.get(),
+            body: StreamBuilder<QuerySnapshot>(
+              stream: ref,
+              // future: ref.,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return ListView.builder(
